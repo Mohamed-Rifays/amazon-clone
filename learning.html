@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button class="clickaction">Click</button>
+  <div class="added-display"></div>
+
+  <script>
+   
+    document.querySelector('.clickaction').addEventListener('click',()=>{
+        document.querySelector('.added-display').innerHTML=`<p>${'Added'}</p>`;
+
+        setTimeout(()=>{
+          document.querySelector('.added-display').innerHTML='';
+        },1500)
+    })
+
+    
+    
+  </script>
+</body>
+</html>
