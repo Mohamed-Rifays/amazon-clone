@@ -64,19 +64,13 @@ productsHTML+=`
             document.querySelector('.products-grid').innerHTML=productsHTML;
 
 
-            const addedMessageTimeouts={};
+            function addToCart(productId){
 
-            document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
-              button.addEventListener('click',()=>{
- 
-              
-                const productId=button.dataset.productId;
-                
-            let matchingItem;
+              let matchingItem;
             
-              cart.forEach((item)=>{
-              if(productId===item.productId){
-                matchingItem=item;
+              cart.forEach((cartItem)=>{
+              if(productId===cartItem.productId){
+                matchingItem=cartItem;
               }
               })
               
@@ -94,19 +88,27 @@ productsHTML+=`
                 quantity:quantity
               })
               }
+            }
 
-                let carttotalquantity=0;
+            function updatecartQuantity(){
 
-                cart.forEach((item)=>{
-                  carttotalquantity+=item.quantity;
+              let carttotalquantity=0;
+
+                cart.forEach((cartItem)=>{
+                  carttotalquantity+=cartItem.quantity;
                 });
 
               document.querySelector('.js-cart-quantity').innerHTML=carttotalquantity;
 
               
+              
+
+            }
+
+
+            function addedDisplay(productId){
               const addedMessage=document.querySelector(`.js-added-to-cart-${productId}`);
               addedMessage.classList.add('added-message');
-
           const previousTimeouts=addedMessageTimeouts[productId];
          
           if(previousTimeouts){
@@ -118,9 +120,18 @@ productsHTML+=`
               }, 2000);
 
               addedMessageTimeouts[productId]=timeoutId;
-            
+            }
+
+            const addedMessageTimeouts={};
+
+            document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
+              button.addEventListener('click',()=>{
+                const productId=button.dataset.productId;
+                
+                addToCart(productId);
+                updatecartQuantity();
+                addedDisplay(productId);
           })
-        
         });
          
           
