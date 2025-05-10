@@ -62,8 +62,9 @@ productsHTML+=`
             `
           })
           
-            document.querySelector('.products-grid').innerHTML=productsHTML;    
-            function updatecartQuantity(){
+            document.querySelector('.products-grid').innerHTML=productsHTML;
+                
+            export function updatecartQuantity(){
 
               let carttotalquantity=0;
 
