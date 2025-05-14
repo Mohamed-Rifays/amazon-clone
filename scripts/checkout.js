@@ -192,6 +192,8 @@ function renderOrderSummary(){
         const {productId,deliveryOptionId}=element.dataset;
       updateDeliveryOption(productId,deliveryOptionId);
 
+      /*model view constroller-MVC*
+      this is the method of regenerating the code/
       renderOrderSummary();
       })
 
