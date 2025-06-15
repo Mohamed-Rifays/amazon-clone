@@ -5,13 +5,14 @@ import {formatCurrency} from '../utils/monney.js'
 export function renderPaymentSummary(){
 let productPricecents=0;
 let shippingPriceCents=0;
-
+ let carttotalquantity=0;
    cart.forEach((cartItem)=>{
     const product= getProduct(cartItem.productId);
       productPricecents+=product.priceCents * cartItem.quantity;
 
       const deliveryOption=getDeliveryOption(cartItem.deliveryOptionId)
       shippingPriceCents+=deliveryOption.priceCents;
+      carttotalquantity+=cartItem.quantity;
    });
 
     const totaBeforeTax=productPricecents+shippingPriceCents;
@@ -24,7 +25,7 @@ let shippingPriceCents=0;
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${carttotalquantity}):</div>
             <div class="payment-summary-money">
             $${formatCurrency(productPricecents)}</div>
           </div>
