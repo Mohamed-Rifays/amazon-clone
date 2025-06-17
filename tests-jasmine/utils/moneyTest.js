@@ -1,4 +1,4 @@
-import {formatCurrency} from '../scripts/utils/monney.js';
+import {formatCurrency} from '../../scripts/utils/monney.js';
 
 describe('test suite: formatCurrency',()=>{
   it('converts cents into dollars',()=>{
