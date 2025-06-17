@@ -1,0 +1,1 @@
+import {formatCurrency} from '../scripts/utils/monney.js';
