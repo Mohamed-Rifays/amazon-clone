@@ -132,7 +132,7 @@ export function renderOrderSummary(){
         `.js-cart-item-container-${productId}`
       );
     container.remove();
-   
+    
     renderPaymentSummary();
     const quantityAfterDelete=carttotalquantity-=1
         document.querySelector('.js-update-Checkout-Quantity').innerHTML=quantityAfterDelete
@@ -168,7 +168,7 @@ export function renderOrderSummary(){
       
         
       if(newQuantity<=0 || newQuantity>=1000){
-        alert("quantity should be greater and less than 1000");
+        alert("quantity should be greater than 0 and less than 1000");
         return;
       }
       updateQuantity(productId,newQuantity);
