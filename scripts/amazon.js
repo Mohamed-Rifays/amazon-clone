@@ -6,102 +6,102 @@ products.forEach((products)=>{
 
 
 productsHTML+=`
-   
-            <div class="product-container">
-              <div class="product-image-container">
-                <img class="product-image"
-                  src="${products.image}">
-              </div>
 
-              <div class="product-name limit-text-to-2-lines">
-                ${products.name}
-              </div>
+    <div class="product-container">
+      <div class="product-image-container">
+        <img class="product-image"
+          src="${products.image}">
+      </div>
 
-              <div class="product-rating-container">
-                <img class="product-rating-stars"
-                  src="images/ratings/rating-${products.rating.stars * 10}.png">
-                <div class="product-rating-count link-primary">
-                  ${products.rating.count}
-                </div>
-              </div>
+      <div class="product-name limit-text-to-2-lines">
+        ${products.name}
+      </div>
 
-              <div class="product-price">
-               ${formatCurrency(products.priceCents)}
-              </div>
+      <div class="product-rating-container">
+        <img class="product-rating-stars"
+          src="${products.getStarsUrl()}">
+        <div class="product-rating-count link-primary">
+          ${products.rating.count}
+        </div>
+      </div>
 
-              <div class="product-quantity-container">
-                <select class="js-quantity-selector-${products.id}">
-                  <option selected value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-              </div>
+      <div class="product-price">
+       ${products.getPrice()}
+      </div>
 
-              <div class="product-spacer"></div>
+      <div class="product-quantity-container">
+        <select class="js-quantity-selector-${products.id}">
+          <option selected value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
 
-              <div class="added-to-cart js-added-to-cart-${products.id}
-              ">
-                <img src="images/icons/checkmark.png">
-                Added
-              </div>
+      <div class="product-spacer"></div>
 
-              <button class="add-to-cart-button button-primary js-add-to-cart"
-              data-product-id="${products.id}">
+      <div class="added-to-cart js-added-to-cart-${products.id}
+      ">
+        <img src="images/icons/checkmark.png">
+        Added
+      </div>
 
-                Add to Cart
-              </button>
-            </div>
+      <button class="add-to-cart-button button-primary js-add-to-cart"
+      data-product-id="${products.id}">
 
-            `
-          })
-          
-            document.querySelector('.products-grid').innerHTML=productsHTML;
-                
-            export function updatecartQuantity(){
+        Add to Cart
+      </button>
+    </div>
 
-              let carttotalquantity=0;
+    `
+  })
+  
+    document.querySelector('.products-grid').innerHTML=productsHTML;
+        
+    export function updatecartQuantity(){
 
-                cart.forEach((cartItem)=>{
-                  carttotalquantity+=cartItem.quantity;
-                });
+      let carttotalquantity=0;
 
-              document.querySelector('.js-cart-quantity').innerHTML=carttotalquantity;
-            }
-
-            function addedDisplay(productId){
-              const addedMessage=document.querySelector(`.js-added-to-cart-${productId}`);
-              addedMessage.classList.add('added-message');
-          const previousTimeouts=addedMessageTimeouts[productId];
-         
-          if(previousTimeouts){
-            clearTimeout(previousTimeouts);
-          }
-
-            const timeoutId=setTimeout(() => {
-                addedMessage.classList.remove('added-message')
-              }, 2000);
-
-              addedMessageTimeouts[productId]=timeoutId;
-            }
-
-            const addedMessageTimeouts={};
-
-            document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
-              button.addEventListener('click',()=>{
-                const productId=button.dataset.productId;
-                
-                addToCart(productId);
-                updatecartQuantity();
-                addedDisplay(productId);
-          })
+        cart.forEach((cartItem)=>{
+          carttotalquantity+=cartItem.quantity;
         });
+
+      document.querySelector('.js-cart-quantity').innerHTML=carttotalquantity;
+    }
+
+    function addedDisplay(productId){
+      const addedMessage=document.querySelector(`.js-added-to-cart-${productId}`);
+      addedMessage.classList.add('added-message');
+  const previousTimeouts=addedMessageTimeouts[productId];
+  
+  if(previousTimeouts){
+    clearTimeout(previousTimeouts);
+  }
+
+    const timeoutId=setTimeout(() => {
+        addedMessage.classList.remove('added-message')
+      }, 2000);
+
+      addedMessageTimeouts[productId]=timeoutId;
+    }
+
+    const addedMessageTimeouts={};
+
+    document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
+      button.addEventListener('click',()=>{
+        const productId=button.dataset.productId;
+        
+        addToCart(productId);
+        updatecartQuantity();
+        addedDisplay(productId);
+  })
+});
          
           
 
