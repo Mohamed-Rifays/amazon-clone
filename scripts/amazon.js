@@ -1,7 +1,25 @@
 import  {cart,addToCart} from '../data/cart.js';
-import {products} from '../data/products.js';
+import {products,loadProducts} from '../data/products.js';
 import {formatCurrency} from './utils/monney.js';
-let productsHTML=''
+loadProducts(renderproductsGrid);
+
+export function updatecartQuantity(){
+
+      let carttotalquantity=0;
+
+        cart.forEach((cartItem)=>{
+          carttotalquantity+=cartItem.quantity;
+        });
+
+      document.querySelector('.js-cart-quantity').innerHTML=carttotalquantity;
+    }
+
+
+function renderproductsGrid(){
+  
+
+
+let productsHTML='';
 products.forEach((products)=>{
 
 
@@ -67,17 +85,7 @@ productsHTML+=`
   
     document.querySelector('.products-grid').innerHTML=productsHTML;
         
-    export function updatecartQuantity(){
-
-      let carttotalquantity=0;
-
-        cart.forEach((cartItem)=>{
-          carttotalquantity+=cartItem.quantity;
-        });
-
-      document.querySelector('.js-cart-quantity').innerHTML=carttotalquantity;
-    }
-
+    
     function addedDisplay(productId){
       const addedMessage=document.querySelector(`.js-added-to-cart-${productId}`);
       addedMessage.classList.add('added-message');
@@ -105,7 +113,7 @@ productsHTML+=`
         addedDisplay(productId);
   })
 });
-         
+}   
           
 
         
