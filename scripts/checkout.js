@@ -13,10 +13,11 @@ async function loadPage(){
 
   await loadProductsFetch();
 
-  await new Promise((resolve,reject)=>{
+  const value = await new Promise((resolve,reject)=>{
+    //throw 'error 2
     loadCart(()=>{
       //reject('error 3')
-      resolve();
+      resolve('value 3');
     });
     
   });
@@ -32,6 +33,7 @@ async function loadPage(){
   
 }
 loadPage();
+
 
 /*
 Promise.all([
